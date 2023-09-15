@@ -14,14 +14,14 @@
 */
 
 export const gameDetails = {   
-    title: 'Game Title',
-    desc: 'Welcome to the world of... here are some quick rules & concepts...',
-    author: 'Student Name',
-    cohort: 'SBPT-2022',
-    startingRoomDescription: 'What you see before you is...',
+    title: 'A Night at the Schermerhorn Symphony Center',
+    desc: 'Welcome to the Schermerhorn Symphony Center.  There is a concert tonight, but you do not have a ticket. Travel through the rooms, inspect items, and collect a ticket to get into the concert!',
+    author: 'Laura Shaw',
+    cohort: 'SBPT-2023',
+    startingRoomDescription: 
+    'You are standing in the Main Lobby. To the East, you see the East Lobby and to the West, you see a Box Office. To the South is the entrance to the concert hall, but you do not have a ticket yet give to the Usher to enter',
     playerCommands: [
-        // replace these with your games commands as needed
-        'inspect', 'view', 'look', 'pickup',
+        'inspect', 'view', 'pickup', 'drop',
     ]
     // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
     // This shouldn't be more than 6-8 different commands.
