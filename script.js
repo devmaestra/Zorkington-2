@@ -126,6 +126,17 @@ export const rooms = {
     concertHall,
 }
 
+//! Available exits with the directions per room:
+mainLobby.addExit("east", eastLobby);
+mainLobby.addExit("west", boxOffice);
+mainLobby.addExit("south", concertHall);
+eastLobby.addExit("west", mainLobby);
+boxOffice.addExit("east", mainLobby);
+concertHall.addExit("north", mainLobby);
+    
+
+
+
 // import { rooms } from './your-module.js';
 
 let currentRoom = rooms.mainLobby;
