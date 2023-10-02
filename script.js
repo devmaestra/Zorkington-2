@@ -47,6 +47,10 @@ class Room {
         this.exits = name;
         this.items = [];
     }
+
+    addExit(direction, room) {
+        this.exits[direction] = room;
+    }
 };
 
 //!List of items in game:
@@ -104,7 +108,7 @@ const eastLobby = new Room(
     "East Lobby",
     "You are standing in the East Lobby of the Schermerhorn Symphony Center. There is a Wooden Box on the floor. Try and open it.",
     ["mainLobby"],
-    [wooden box, silver coin]
+    [woodenBox, silverCoin]
 );
 
 const concertHall = new Room(
@@ -116,13 +120,46 @@ const concertHall = new Room(
 
 //! Rooms as an object:
 export const rooms = {
-    mainLobby = "Main Lobby",
-    eastLobby = "East Lobby",
-    boxOffice = "Box Office",
-    concertHall = "Concert Hall"
+    mainLobby,
+    eastLobby,
+    boxOffice,
+    concertHall,
 }
 
+// import { rooms } from './your-module.js';
+
+let currentRoom = rooms.mainLobby;
+
+//! Moving to another room:
+function moveToRoom(roomName) {
+    const nextRoom = rooms[roomName];
+
+    if (nextRoom) {
+        if (currentRoom.exits.includes(roomName)) {
+            currentRoom = nextRoom;
+            return(`You are now in the ${currentRoom.name}.`);
+        } else {
+            return(`You cannot go to ${nextRoom.name} from here.`);
+        }
+    } else {
+        return(`Room ${roomName} does not exist.`);
+    }
+};
+
+
 export const domDisplay = (playerInput) => {
+
+    const command = playerInput.toLowerCase();
+
+    switch (command) {
+        case 'move east':
+            return moveToRoom('eastLobby');
+        case 'move west':
+            return moveToRoom('boxOffice');
+        default:
+            return 'Invalid command.';
+    }
+};
     /* 
         TODO: for students
         - This function must return a string. 
@@ -155,4 +192,4 @@ export const domDisplay = (playerInput) => {
     */
 
     // Your code here
-} 
+
