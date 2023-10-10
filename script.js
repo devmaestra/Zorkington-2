@@ -132,6 +132,7 @@ concertHall.addExit("north", mainLobby);
 
 
 let currentRoom = rooms.mainLobby;
+let playerInventory = [];
 
 //! Moving to another room:
 function moveToRoom(roomName) {
