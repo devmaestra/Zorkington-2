@@ -21,15 +21,11 @@ export const gameDetails = {
     startingRoomDescription: 
     'You are standing in the Main Lobby. To the East, you see the East Lobby and to the West, you see a Box Office. To the South is the entrance to the concert hall, but you do not have a ticket yet to give to the Usher allowing you to enter.',
     playerCommands: [
-        'inspect', 'view', 'pickup', 'drop'
+        'inspect', 'view', 'pickup', 'drop', 'north', 'south', 'east', 'west', 'inventory'
     ]
-    // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
-    // This shouldn't be more than 6-8 different commands.
-}
-// Setting your classes, object creations, state and dictionaries should be outside of the domDisplay() function. This will help it handling data if you need to call on another function that needs that information and wouldn't be tied strictly to the domDisplay() function. - line 135, "playerCommands" is calling to "toLowerCase()" method. This value is an object. I might suggest just having the keys set as lowercase when structuring it instead. - moveRoom() is being invoked regardless of the response and is using the parameter of "newRoom"; however, nothing gets passed in as it's argument. Perhaps this should be "playerInput" to help navigate. However, it does note to move to "newRoom" so it would have to detail which room. This is where state can be referenced to help navigate. ex: If "east", evaluate currentRoom, can you go east? Which room is east?
-// Your code here
+};
 
-//!Item Dictionary:
+//!Item Constructor:
 class Item {
     constructor(name, description, location, actions) {
     this.name = name;
@@ -44,7 +40,7 @@ class Room {
     constructor(name, description, exits, items) {
         this.name = name;
         this.description = description;
-        this.exits = name;
+        this.exits = {};
         this.items = [];
     }
 
@@ -63,7 +59,7 @@ const usher = new Item(
 
 const ticket = new Item(
     "ticket", 
-    "This is a ticket. You can only pick this ticket up if you have a silver coin in your inventory.  Drop the silver coin and then pick up the ticket.  Take the ticket to the usher and drop it there.",
+    "This is a ticket. You can only pickup this ticket up if you have a silver coin in your inventory.  Drop the silver coin and then pick up the ticket.  Take the ticket to the usher and drop it there.",
     "boxOffice",
     ["view", "pickup", "drop"]
 );
@@ -93,7 +89,7 @@ const program = new Item(
 const mainLobby = new Room(
     "Main Lobby",
     "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the WEST, an Usher blocking the entrance to the Concert Hall to the SOUTH, and the East Lobby to the EAST. The usher is holding a ticket scanner, but you don't have a ticket yet to enter the concert. You will need to find a silver coin, then buy a ticket at the box office, and then enter the concert with the ticket.",
-    ["eastLobby", "boxOffice"],
+    ["eastLobby", "boxOffice", "concertHall"],
     [usher] //immovable
 );
 
@@ -133,11 +129,7 @@ mainLobby.addExit("south", concertHall);
 eastLobby.addExit("west", mainLobby);
 boxOffice.addExit("east", mainLobby);
 concertHall.addExit("north", mainLobby);
-    
 
-
-
-// import { rooms } from './your-module.js';
 
 let currentRoom = rooms.mainLobby;
 
@@ -159,7 +151,8 @@ function moveToRoom(roomName) {
 
 
 export const domDisplay = (playerInput) => {
-
+console.log(playerInput);
+console.log(currentRoom);
     const command = playerInput.toLowerCase();
 
     switch (command) {

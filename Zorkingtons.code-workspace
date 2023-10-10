@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../../Zorkington_DOM_Student-Template"
+	},
+	{
+		"path": ".."
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Zorkington-2"
+  }
+}
