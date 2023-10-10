@@ -174,10 +174,6 @@ function moveRoom(newRoomName) {
   }
 }
 
-// Usage example:
-// const result = moveRoom('eastLobby');
-// console.log(result);
-
 // function moveRoom(newRoom, currentRoom) {
 //     let validRooms = locationStates[currentRoom];
 //     // let valid = validRooms.find(room => room.name.toLowerCase() === newRoom.toLowerCase());
